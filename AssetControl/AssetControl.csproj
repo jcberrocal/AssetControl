@@ -32,9 +32,63 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>asset-color.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.8.0.0\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.HashCode, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.HashCode.1.1.1\lib\net461\Microsoft.Bcl.HashCode.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.8.0.0\lib\net462\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.8.0.0\lib\net462\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Npgsql, Version=8.0.5.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Npgsql.8.0.5\lib\netstandard2.0\Npgsql.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Collections.Immutable, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Collections.Immutable.8.0.0\lib\net462\System.Collections.Immutable.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.8.0.0\lib\net462\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Encodings.Web, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encodings.Web.8.0.0\lib\net462\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Json, Version=8.0.0.5, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Json.8.0.5\lib\net462\System.Text.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Channels, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Channels.8.0.0\lib\net462\System.Threading.Channels.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,14 +100,179 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\Asset.cs" />
+    <Compile Include="Classes\AssetSearchOptions.cs" />
+    <Compile Include="Classes\AssetStatus.cs" />
+    <Compile Include="Classes\AssetType.cs" />
+    <Compile Include="Classes\AuditRecord.cs" />
+    <Compile Include="Classes\AuthenticationResult.cs" />
+    <Compile Include="Classes\Branch.cs" />
+    <Compile Include="Classes\ComboAttribute.cs" />
+    <Compile Include="Classes\EditType.cs" />
+    <Compile Include="Classes\IgnoreAttribute.cs" />
+    <Compile Include="Classes\AssetLocation.cs" />
+    <Compile Include="Classes\QueryResult.cs" />
+    <Compile Include="Classes\RetirementReason.cs" />
+    <Compile Include="Classes\Translations.cs" />
+    <Compile Include="Classes\User.cs" />
+    <Compile Include="Classes\UserExistsResult.cs" />
+    <Compile Include="Classes\UserRole.cs" />
+    <Compile Include="Data\DataBaseManager.cs" />
+    <Compile Include="Exceptions\ValidationException.cs" />
+    <Compile Include="Forms\frmAddDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmAddDetails.Designer.cs">
+      <DependentUpon>frmAddDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmAssetEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmAssetEdit.Designer.cs">
+      <DependentUpon>frmAssetEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmAssets.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmAssets.Designer.cs">
+      <DependentUpon>frmAssets.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmAssetTypeEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmAssetTypeEdit.Designer.cs">
+      <DependentUpon>frmAssetTypeEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmAssetTypes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmAssetTypes.Designer.cs">
+      <DependentUpon>frmAssetTypes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmBase.Designer.cs">
+      <DependentUpon>frmBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmBranchEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmBranchEdit.Designer.cs">
+      <DependentUpon>frmBranchEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmBranches.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmBranches.Designer.cs">
+      <DependentUpon>frmBranches.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmLocationEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmLocationEdit.Designer.cs">
+      <DependentUpon>frmLocationEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmLocations.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmLocations.Designer.cs">
+      <DependentUpon>frmLocations.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\frmLogin.Designer.cs">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\frmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmMain.Designer.cs">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmPasswordChange.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmPasswordChange.Designer.cs">
+      <DependentUpon>frmPasswordChange.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmSettings.Designer.cs">
+      <DependentUpon>frmSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmUserEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmUserEdit.Designer.cs">
+      <DependentUpon>frmUserEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmUsers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmUsers.Designer.cs">
+      <DependentUpon>frmUsers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Logic\AssetService.cs" />
+    <Compile Include="Logic\AuthenticationService.cs" />
+    <Compile Include="Logic\UserService.cs" />
+    <Compile Include="Logic\Utilities.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Classes\AppConfiguration.cs" />
+    <Compile Include="Logic\Encryptor.cs" />
+    <Compile Include="Classes\OptionalAttribute.cs" />
+    <Compile Include="Logic\Validator.cs" />
+    <EmbeddedResource Include="Forms\frmAddDetails.resx">
+      <DependentUpon>frmAddDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmAssetEdit.resx">
+      <DependentUpon>frmAssetEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmAssets.resx">
+      <DependentUpon>frmAssets.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmAssetTypeEdit.resx">
+      <DependentUpon>frmAssetTypeEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmAssetTypes.resx">
+      <DependentUpon>frmAssetTypes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmBase.resx">
+      <DependentUpon>frmBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmBranchEdit.resx">
+      <DependentUpon>frmBranchEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmBranches.resx">
+      <DependentUpon>frmBranches.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmLocationEdit.resx">
+      <DependentUpon>frmLocationEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmLocations.resx">
+      <DependentUpon>frmLocations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmLogin.resx">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmMain.resx">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmPasswordChange.resx">
+      <DependentUpon>frmPasswordChange.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmSettings.resx">
+      <DependentUpon>frmSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmUserEdit.resx">
+      <DependentUpon>frmUserEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmUsers.resx">
+      <DependentUpon>frmUsers.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -62,7 +281,14 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\AssetControl.Classes.Asset.datasource" />
+    <None Include="Properties\DataSources\AssetControl.Classes.AssetType.datasource" />
+    <None Include="Properties\DataSources\AssetControl.Classes.Branch.datasource" />
+    <None Include="Properties\DataSources\AssetControl.Classes.Location.datasource" />
+    <None Include="Properties\DataSources\AssetControl.Classes.User.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -77,8 +303,71 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Classes\" />
-    <Folder Include="Images\" />
+    <Content Include="asset-color.ico" />
+    <None Include="Images\move-32.png" />
+    <None Include="Images\refresh-16.png" />
+    <None Include="Images\arrows-32.png" />
+    <None Include="Images\password-32.png" />
+    <None Include="Images\toggle-32.png" />
+    <None Include="Images\edit-32.png" />
+    <None Include="Images\new-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\asset-management-512.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\user 64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\asset-black.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\asset-512.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\password-64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\asset-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\asset-management-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\asset-report-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\about-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\window-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\exit-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\settings-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\asset-black-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\fixed-asset-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\assetlocation-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\branches-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\settings-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\Users-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\audit-32.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
