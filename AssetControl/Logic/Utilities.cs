@@ -4,12 +4,14 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace AssetControl.Logic
 {
-    internal class Utilities
+    public static class Utilities
     {
         private static Dictionary<Type, Func<object>> _constructor = new Dictionary<Type, Func<object>>()
         {

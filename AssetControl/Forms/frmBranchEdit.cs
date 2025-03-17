@@ -41,7 +41,8 @@ namespace AssetControl.Forms
         {
             if (!editMode)
             {
-                Text = "Crear nueva Filial";
+                Text = "Crear Filial";
+                lblTitleBranchEdit.Text = "Crear nueva Filial";
                 lblTitleBranchEdit.Location = new Point(59, 15);
                 lbldObservations.Visible = true;
             }
@@ -60,13 +61,16 @@ namespace AssetControl.Forms
         {
             Branch branch = new Branch();
             branch.BranchDescription = txtBranchDescription.Text;
-            branch.BranchId = _branch.BranchId;
-            if (_editMode && _branch.Equals(branch))
-            {                
-                //nothing to do, there are no changes
-                Close();
-                return;
-                
+            
+            if (_editMode)
+            {
+                branch.BranchId = _branch.BranchId;
+                if (branch.Equals(_branch))
+                {
+                    //nothing to do, there are no changes
+                    Close();
+                    return;
+                }
             }
 
             var validator = new Validator<Branch>();
@@ -129,6 +133,17 @@ namespace AssetControl.Forms
         private void btnCancelBranchEdit_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void frmBranchEdit_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+                Close();
+            if (e.KeyCode == Keys.Enter)
+            {
+                SendKeys.Send("{Tab}");
+                e.SuppressKeyPress = true;
+            }
         }
     }
 }

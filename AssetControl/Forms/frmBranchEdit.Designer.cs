@@ -133,9 +133,17 @@
             this.Controls.Add(this.txtBranchDescription);
             this.Controls.Add(this.txtBranchId);
             this.Controls.Add(this.lblTitleBranchEdit);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.KeyPreview = true;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmBranchEdit";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "frmBranchEdit";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmBranchEdit_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

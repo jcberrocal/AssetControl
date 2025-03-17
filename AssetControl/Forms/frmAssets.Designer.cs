@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnSearchAssets = new System.Windows.Forms.Button();
             this.txtAssetDescription = new System.Windows.Forms.TextBox();
             this.lblAssetDescription = new System.Windows.Forms.Label();
@@ -295,6 +295,8 @@
             // 
             // cbAssetType
             // 
+            this.cbAssetType.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbAssetType.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbAssetType.DisplayMember = "TypeDescription";
             this.cbAssetType.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbAssetType.FormattingEnabled = true;
@@ -302,8 +304,9 @@
             this.cbAssetType.Name = "cbAssetType";
             this.cbAssetType.Size = new System.Drawing.Size(200, 23);
             this.cbAssetType.TabIndex = 3;
-            this.cbAssetType.ValueMember = "AssetTypeid";
+            this.cbAssetType.ValueMember = "AssetTypeId";
             this.cbAssetType.DropDown += new System.EventHandler(this.cbAssetType_DropDown);
+            this.cbAssetType.Enter += new System.EventHandler(this.cbAssetType_Enter);
             // 
             // lblAssetType
             // 
@@ -318,17 +321,21 @@
             // chkGenericAsset
             // 
             this.chkGenericAsset.AutoSize = true;
+            this.chkGenericAsset.Checked = true;
+            this.chkGenericAsset.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkGenericAsset.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkGenericAsset.Location = new System.Drawing.Point(767, 29);
             this.chkGenericAsset.Name = "chkGenericAsset";
-            this.chkGenericAsset.Size = new System.Drawing.Size(145, 19);
+            this.chkGenericAsset.Size = new System.Drawing.Size(201, 19);
             this.chkGenericAsset.TabIndex = 16;
-            this.chkGenericAsset.Text = "Activos genéricos";
+            this.chkGenericAsset.Text = "Ocultar Activos genéricos";
             this.chkGenericAsset.UseVisualStyleBackColor = true;
             this.chkGenericAsset.CheckedChanged += new System.EventHandler(this.chkGenericAsset_CheckedChanged);
             // 
             // cbAssetStatus
             // 
+            this.cbAssetStatus.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbAssetStatus.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbAssetStatus.DisplayMember = "StatusDescription";
             this.cbAssetStatus.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbAssetStatus.FormattingEnabled = true;
@@ -338,6 +345,7 @@
             this.cbAssetStatus.TabIndex = 4;
             this.cbAssetStatus.ValueMember = "Status";
             this.cbAssetStatus.DropDown += new System.EventHandler(this.cbAssetStatus_DropDown);
+            this.cbAssetStatus.Enter += new System.EventHandler(this.cbAssetStatus_Enter);
             // 
             // lblAssetStatus
             // 
@@ -351,6 +359,8 @@
             // 
             // cbAssetLocation
             // 
+            this.cbAssetLocation.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbAssetLocation.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbAssetLocation.DisplayMember = "LocationDescription";
             this.cbAssetLocation.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbAssetLocation.FormattingEnabled = true;
@@ -360,6 +370,7 @@
             this.cbAssetLocation.TabIndex = 5;
             this.cbAssetLocation.ValueMember = "AssetLocationId";
             this.cbAssetLocation.DropDown += new System.EventHandler(this.cbAssetLocation_DropDown);
+            this.cbAssetLocation.Enter += new System.EventHandler(this.cbAssetLocation_Enter);
             // 
             // lblAssetLocation
             // 
@@ -373,6 +384,8 @@
             // 
             // cbAssetBranch
             // 
+            this.cbAssetBranch.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbAssetBranch.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbAssetBranch.DisplayMember = "BranchDescription";
             this.cbAssetBranch.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbAssetBranch.FormattingEnabled = true;
@@ -382,6 +395,7 @@
             this.cbAssetBranch.TabIndex = 6;
             this.cbAssetBranch.ValueMember = "BranchId";
             this.cbAssetBranch.DropDown += new System.EventHandler(this.cbAssetBranch_DropDown);
+            this.cbAssetBranch.Enter += new System.EventHandler(this.cbAssetBranch_Enter);
             // 
             // lblAssetBranch
             // 
@@ -444,8 +458,8 @@
             this.dtgAssets.ReadOnly = true;
             this.dtgAssets.RowHeadersVisible = false;
             this.dtgAssets.RowHeadersWidth = 20;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtgAssets.RowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtgAssets.RowsDefaultCellStyle = dataGridViewCellStyle7;
             this.dtgAssets.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dtgAssets.Size = new System.Drawing.Size(1052, 357);
             this.dtgAssets.TabIndex = 1;
@@ -601,9 +615,11 @@
             this.genericAsset.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.genericAsset.DataPropertyName = "GenericAsset";
             this.genericAsset.DividerWidth = 1;
+            this.genericAsset.FalseValue = "";
             this.genericAsset.HeaderText = "Genérico";
             this.genericAsset.Name = "genericAsset";
             this.genericAsset.ReadOnly = true;
+            this.genericAsset.TrueValue = "";
             this.genericAsset.Width = 75;
             // 
             // quantity

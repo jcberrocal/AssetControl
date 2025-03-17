@@ -73,6 +73,7 @@ namespace AssetControl.Forms
                 cbAssetLocation.SelectedValue = _asset.Location;
                 cbAssetBranch.SelectedValue = _asset.Branch;
                 cbAssetBranch.Enabled = false;
+                txtAssetId.Text = _asset.Id.ToString();
                 txtAssetPrice.Text = _asset.Price.ToString();
                 txtAssetObservations.Text = _asset.Observations;
                 txtAssetSerialNumber.Text = _asset.SerialNumber;
@@ -137,7 +138,7 @@ namespace AssetControl.Forms
         {
             Asset asset = new Asset()
             {
-                Id = _editMode ? _asset.Id : 0,
+                Id = _editMode ? _asset.Id : 1,
                 Description = txtAssetDescription.Text,
                 AssetType = Convert.ToInt32(cbAssetType.SelectedValue),
                 Status = Convert.ToInt32(cbAssetStatus.SelectedValue),
@@ -271,6 +272,7 @@ namespace AssetControl.Forms
             {
                 SendKeys.Send("{TAB}");
                 e.SuppressKeyPress = true;
+                Cursor.Show();
             }
         }
 
@@ -294,6 +296,51 @@ namespace AssetControl.Forms
                 return;
             MessageBox.Show("Activo creado correctamente", "Guardar", MessageBoxButtons.OK, MessageBoxIcon.Information);
             ClearWindow();
+        }
+
+        private void txtQuantity_Enter(object sender, EventArgs e)
+        {
+            txtQuantity.Clear();
+        }
+
+        private void txtQuantity_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtQuantity.Text))
+            {
+                txtQuantity.Text = 1.ToString();
+            }
+        }
+        private void cbAssetType_Enter(object sender, EventArgs e)
+        {
+            //cbAssetType.DroppedDown = true;
+        }
+
+        private void cbAssetStatus_Enter(object sender, EventArgs e)
+        {
+            //cbAssetStatus.DroppedDown = true;
+        }
+
+        private void cbAssetLocation_Enter(object sender, EventArgs e)
+        {
+            //cbAssetLocation.DroppedDown = true;
+        }
+
+        private void cbAssetBranch_Enter(object sender, EventArgs e)
+        {
+            //cbAssetBranch.DroppedDown = true;
+        }
+
+        private void txtAssetPrice_Enter(object sender, EventArgs e)
+        {
+            txtAssetPrice.Clear();
+        }
+
+        private void txtAssetPrice_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtAssetPrice.Text.Replace("₡", "").Replace("_","").Trim()))
+            {
+                txtAssetPrice.Text = 0.ToString();
+            }
         }
     }
 }

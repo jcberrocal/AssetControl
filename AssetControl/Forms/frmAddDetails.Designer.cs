@@ -47,6 +47,7 @@
             // 
             // txtDetails
             // 
+            this.txtDetails.BackColor = System.Drawing.Color.LightGoldenrodYellow;
             this.txtDetails.Location = new System.Drawing.Point(13, 63);
             this.txtDetails.Multiline = true;
             this.txtDetails.Name = "txtDetails";
@@ -66,6 +67,7 @@
             // 
             // cbOptions
             // 
+            this.cbOptions.BackColor = System.Drawing.Color.LightGoldenrodYellow;
             this.cbOptions.DisplayMember = "ReasonDescription";
             this.cbOptions.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbOptions.FormattingEnabled = true;

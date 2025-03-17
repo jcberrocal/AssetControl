@@ -120,7 +120,7 @@
             this.btnHelpUserId.Location = new System.Drawing.Point(287, 51);
             this.btnHelpUserId.Name = "btnHelpUserId";
             this.btnHelpUserId.Size = new System.Drawing.Size(16, 16);
-            this.btnHelpUserId.TabIndex = 0;
+            this.btnHelpUserId.TabIndex = 100;
             this.btnHelpUserId.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.toolTip.SetToolTip(this.btnHelpUserId, resources.GetString("btnHelpUserId.ToolTip"));
             this.btnHelpUserId.UseVisualStyleBackColor = false;
@@ -138,7 +138,7 @@
             this.btnHelpUserName.Location = new System.Drawing.Point(287, 81);
             this.btnHelpUserName.Name = "btnHelpUserName";
             this.btnHelpUserName.Size = new System.Drawing.Size(16, 16);
-            this.btnHelpUserName.TabIndex = 0;
+            this.btnHelpUserName.TabIndex = 100;
             this.btnHelpUserName.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.toolTip.SetToolTip(this.btnHelpUserName, "Nombre completo\r\n(Juan Pérez Vargas)");
             this.btnHelpUserName.UseVisualStyleBackColor = false;
@@ -156,7 +156,7 @@
             this.bntHelpPassword.Location = new System.Drawing.Point(287, 141);
             this.bntHelpPassword.Name = "bntHelpPassword";
             this.bntHelpPassword.Size = new System.Drawing.Size(16, 16);
-            this.bntHelpPassword.TabIndex = 0;
+            this.bntHelpPassword.TabIndex = 100;
             this.bntHelpPassword.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.toolTip.SetToolTip(this.bntHelpPassword, "La contraseña por defecto para\r\nnuevos usuarios es 12345");
             this.bntHelpPassword.UseVisualStyleBackColor = false;

@@ -35,25 +35,47 @@ CREATE TABLE IF NOT EXISTS asset_types(
 	endated_by VARCHAR(20) REFERENCES users(user_id)
 );
 
-CREATE OR REPLACE FUNCTION check_related_records(related_table VARCHAR, column_name VARCHAR, related_table_es VARCHAR)
-RETURNS TRIGGER AS $$
+CREATE OR REPLACE FUNCTION sch_asset_control.check_related_records()
+    RETURNS trigger
+    LANGUAGE plpgsql
+    COST 100
+    VOLATILE NOT LEAKPROOF
+AS $BODY$
+DECLARE
+    column_name_in_current_table TEXT := TG_ARGV[0];
+    column_name_in_assets TEXT := TG_ARGV[1];
+    related_table_es TEXT := TG_ARGV[2];
+    query TEXT;
+    record_exists BOOLEAN;
+    column_value INTEGER;
 BEGIN
-	IF NEW.end_date IS NOT NULL THEN
-		EXECUTE FORMAT('
-			IF EXISTS (SELECT 1 FROM assets WHERE %I = OLD.%I) THEN
-				RAISE EXCEPTION ''No se puede finalizar el %s. Existen activos relacionados con este registro.'';
-			END IF;
-			', related_table, column_name, column_name, related_table_es);
-	END IF;
-	RETURN NEW;
+    EXECUTE FORMAT('SELECT ($1).%I::INTEGER', column_name_in_current_table)
+    INTO column_value
+    USING OLD;
+
+    IF column_value IS NULL THEN
+        RETURN NEW;
+    END IF;
+
+    IF NEW.end_date IS NOT NULL THEN
+        query := FORMAT('SELECT EXISTS (SELECT 1 FROM assets WHERE %I = $1)', column_name_in_assets);
+
+        EXECUTE query INTO record_exists USING column_value;
+
+        IF record_exists THEN
+            RAISE EXCEPTION 'No se puede finalizar %. Existen activos relacionados con este registro.', related_table_es;
+        END IF;
+    END IF;
+
+    RETURN NEW;
 END;
-$$ LANGUAGE plpgsql;
+$BODY$;
 
 CREATE OR REPLACE TRIGGER check_assets_before_end_date
 BEFORE UPDATE 
-ON sch_asset_control.asset_types
+ON asset_types
 FOR EACH ROW
-EXECUTE FUNCTION sch_asset_control.check_related_records('asset_type','el Tipo de Activo');
+EXECUTE FUNCTION sch_asset_control.check_related_records('asset_type_id', 'asset_type', 'el Tipo de Activo');
 
 --ASSET STATUS
 CREATE TABLE IF NOT EXISTS asset_status(
@@ -87,9 +109,9 @@ CREATE TABLE IF NOT EXISTS branches(
 
 CREATE OR REPLACE TRIGGER check_assets_before_end_date
 BEFORE UPDATE 
-ON sch_asset_control.branches
+ON branches
 FOR EACH ROW
-EXECUTE FUNCTION sch_asset_control.check_related_records('branch','la Filial');
+EXECUTE FUNCTION check_related_records('branch_id', 'branch', 'la Filial');
 
 --ASSET LOCATIONS
 CREATE TABLE IF NOT EXISTS asset_locations(
@@ -105,9 +127,9 @@ CREATE TABLE IF NOT EXISTS asset_locations(
 
 CREATE OR REPLACE TRIGGER check_assets_before_end_date
 BEFORE UPDATE 
-ON sch_asset_control.asset_locations
+ON asset_locations
 FOR EACH ROW
-EXECUTE FUNCTION sch_asset_control.check_related_records('asset_locations','la Ubicación');
+EXECUTE FUNCTION check_related_records('asset_location_id', 'asset_location', 'la Ubicacion');
 
 --ASSETS
 CREATE TABLE IF NOT EXISTS assets(

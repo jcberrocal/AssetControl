@@ -311,12 +311,12 @@ namespace AssetControl.Data
                     break;
                 case EditType.Update:
                     _sql.AppendLine("UPDATE asset_types");
-                    _sql.AppendLine("    SET type_description = @description, modified_at = now(), modified_by = @user_id");
+                    _sql.AppendLine("SET type_description = @description, modified_at = now(), modified_by = @user_id");
                     _sql.AppendLine("WHERE asset_type_id = @id;");
                     parameters = new NpgsqlParameter[]
                     {
                         new NpgsqlParameter("@description", NpgsqlTypes.NpgsqlDbType.Varchar) {Value=type.TypeDescription},
-                        new NpgsqlParameter("user_id", NpgsqlTypes.NpgsqlDbType.Varchar) {Value = appUser},
+                        new NpgsqlParameter("@user_id", NpgsqlTypes.NpgsqlDbType.Varchar) {Value = appUser},
                         new NpgsqlParameter("@id", NpgsqlTypes.NpgsqlDbType.Integer) {Value = type.AssetTypeId}
                     };
                     break;
@@ -372,7 +372,7 @@ namespace AssetControl.Data
             if (active)
                 _sql.AppendLine("AND u.end_date IS NULL");
             if (!string.IsNullOrEmpty(description))
-                _sql.AppendLine("AND role_description ILIKE @description");
+                _sql.AppendLine("AND username ILIKE @description");
             if (role > 0)
                 _sql.AppendLine("AND user_role = @user_role");
             _sql.Append(";");
@@ -420,6 +420,16 @@ namespace AssetControl.Data
                 case EditType.Endate:
                     _sql.AppendLine("UPDATE users");
                     _sql.AppendLine("    SET end_date = now(), modified_at = now(), modified_by = @app_user, endated_by = @app_user");
+                    _sql.AppendLine("WHERE user_id = @user_id;");
+                    parameters = new NpgsqlParameter[]
+                    {
+                        new NpgsqlParameter("@app_user", NpgsqlTypes.NpgsqlDbType.Varchar) {Value = appUser},
+                        new NpgsqlParameter("@user_id", NpgsqlTypes.NpgsqlDbType.Varchar) {Value = user.UserId}
+                    };
+                    break;
+                case EditType.Reactivate:
+                    _sql.AppendLine("UPDATE users");
+                    _sql.AppendLine("    SET end_date = NULL, endated_by = NULL, modified_at = now(), modified_by = @app_user");
                     _sql.AppendLine("WHERE user_id = @user_id;");
                     parameters = new NpgsqlParameter[]
                     {
@@ -730,7 +740,7 @@ namespace AssetControl.Data
             }
             if(options.GenericAsset)
             {
-                _sql.AppendLine("AND generic_asset = TRUE");
+                _sql.AppendLine("AND generic_asset = FALSE");
             }
             if (options.ActiveOnly)
             {
@@ -786,8 +796,8 @@ namespace AssetControl.Data
                     break;
                 case EditType.Update:
                     _sql.AppendLine("UPDATE assets");
-                    _sql.AppendLine("   SET descrption = @description,");
-                    _sql.AppendLine("   location = @location,");
+                    _sql.AppendLine("   SET asset_description = @description,");
+                    _sql.AppendLine("   asset_location = @location,");
                     _sql.AppendLine("   branch = @branch,");
                     _sql.AppendLine("   price = @price,");
                     _sql.AppendLine("   observations = @observations,");
@@ -808,11 +818,14 @@ namespace AssetControl.Data
                         new NpgsqlParameter("@branch", NpgsqlTypes.NpgsqlDbType.Integer) {Value = asset.Branch},
                         new NpgsqlParameter("@price", NpgsqlTypes.NpgsqlDbType.Numeric) {Value = asset.Price},
                         new NpgsqlParameter("@observations", NpgsqlTypes.NpgsqlDbType.Varchar) {Value = asset.Observations},
-                        new NpgsqlParameter("@serial_number", NpgsqlTypes.NpgsqlDbType.Varchar) {Value = asset.SerialNumber},
-                        new NpgsqlParameter("@asset_tag", NpgsqlTypes.NpgsqlDbType.Varchar) {Value = asset.AssetTag},
+                        new NpgsqlParameter("@serial_number", NpgsqlTypes.NpgsqlDbType.Varchar)
+                            {Value = asset.SerialNumber == null? DBNull.Value : (object)asset.SerialNumber},
+                        new NpgsqlParameter("@asset_tag", NpgsqlTypes.NpgsqlDbType.Varchar)
+                            {Value = asset.AssetTag == null? DBNull.Value : (object)asset.AssetTag},
                         new NpgsqlParameter("@generic_asset", NpgsqlTypes.NpgsqlDbType.Boolean) {Value = asset.GenericAsset},
                         new NpgsqlParameter("@quantity", NpgsqlTypes.NpgsqlDbType.Integer) {Value = asset.Quantity},
-                        new NpgsqlParameter("@purchase_date", NpgsqlTypes.NpgsqlDbType.Date) {Value = asset.PurchaseDate},
+                        new NpgsqlParameter("@purchase_date", NpgsqlTypes.NpgsqlDbType.Date)
+                            {Value = asset.PurchaseDate.HasValue ? (object)asset.PurchaseDate : DBNull.Value},
                         new NpgsqlParameter("@warranty_months", NpgsqlTypes.NpgsqlDbType.Integer) {Value = asset.WarrantyMonths},
                         new NpgsqlParameter("@user_id", NpgsqlTypes.NpgsqlDbType.Varchar) {Value = appUser},
                         new NpgsqlParameter("@id", NpgsqlTypes.NpgsqlDbType.Integer) {Value = asset.Id}

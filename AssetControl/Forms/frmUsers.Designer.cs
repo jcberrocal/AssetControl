@@ -209,6 +209,8 @@
             // 
             // cbUserRoles
             // 
+            this.cbUserRoles.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbUserRoles.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbUserRoles.DisplayMember = "RoleDescription";
             this.cbUserRoles.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbUserRoles.FormattingEnabled = true;

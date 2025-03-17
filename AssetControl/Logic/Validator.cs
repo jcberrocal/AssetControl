@@ -28,8 +28,15 @@ namespace AssetControl.Logic
                     else if (Attribute.IsDefined(property, typeof(ComboAttribute)))
                     {
                         int comboValue = (int)property.GetValue(myObject);
+                        string translatedProperty;
                         if (comboValue == 0)
-                            throw new ValidationException($"El campo {property.Name} es obligatorio", property.Name);
+                        {
+                            using (Translations translations = new Translations())
+                            {
+                                translatedProperty = translations.GetTranslation(property.Name);
+                            }
+                            throw new ValidationException($"El campo {translatedProperty} es obligatorio", property.Name);
+                        }
                     }
                     else
                     {
@@ -37,7 +44,7 @@ namespace AssetControl.Logic
                         string translatedProperty;
                         //string validation
                         if (property.PropertyType == typeof(string))
-                        {
+                         {
                             if (string.IsNullOrEmpty(value?.ToString()))
                             {
                                 using (Translations translations = new Translations())
@@ -57,7 +64,7 @@ namespace AssetControl.Logic
                                 }
                                 throw new ValidationException($"El campo {translatedProperty} debe ser un número entero", property.Name);
                             }
-                            if ((int)value < 0)
+                            if ((int)value <= 0)
                             {
                                 using (Translations translations = new Translations())
                                 {

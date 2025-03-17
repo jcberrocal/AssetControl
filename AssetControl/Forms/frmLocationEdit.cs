@@ -39,13 +39,14 @@ namespace AssetControl.Forms
         {
             if (!editMode)
             {
-                Text = "Crear nueva Ubicación";
+                Text = "Crear Ubicación";
                 lblTitleLocationEdit.Location = new Point(41, 15);
                 lblObservations.Visible = true;
             }
             else
             {
                 Text = "Editar Ubicación";
+                lblTitleLocationEdit.Text = "Editar Ubicación";
                 lblTitleLocationEdit.Location = new Point(71, 15);
                 lblObservations.Visible = false;
                 txtLocationId.Text = location.AssetLocationId.ToString();

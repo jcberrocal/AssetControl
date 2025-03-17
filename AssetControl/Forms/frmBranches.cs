@@ -165,8 +165,7 @@ namespace AssetControl.Forms
                 return;
             }
             DataGridViewRow selectedRow = dtgBranches.SelectedRows[0];
-            if(selectedRow.Cells["endDate"].Value != null &&
-                selectedRow.Cells["endDate"].Value != DBNull.Value)
+            if(selectedRow.Cells["endDate"].Value != null)
             {
                 MessageBox.Show("La filial seleccionada ya está finalizada", "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -225,7 +224,7 @@ namespace AssetControl.Forms
                 btnSearchBranch.PerformClick();
                 e.SuppressKeyPress = true;
             }
-            if (e.KeyCode == Keys.F10)
+            if (e.KeyCode == Keys.F10 && User.Instance.Role == 1)
             {
                 ReactivateBranch();
                 e.SuppressKeyPress = true;

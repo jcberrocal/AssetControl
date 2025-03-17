@@ -29,7 +29,7 @@ namespace AssetControl.Classes
         public string SerialNumber { get; set; }
         [Optional]
         public string AssetTag { get; set; }
-        [Ignore]
+        //[Ignore]
         public bool GenericAsset { get; set; }
         public int Quantity { get; set; }
         [Optional]

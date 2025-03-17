@@ -64,6 +64,7 @@ namespace AssetControl.Forms
                 bntHelpPassword.Visible = false;
             }
             _editMode = editMode;
+            txtUserIdEdit.Focus();
         }
 
         private void LoadUserRoles()

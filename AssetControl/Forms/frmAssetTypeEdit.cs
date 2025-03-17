@@ -15,13 +15,15 @@ namespace AssetControl.Forms
         public frmAssetTypeEdit()
         {
             InitializeComponent();
-            LoadWindow(false);
+            _editMode = false;
+            LoadWindow();
         }
         internal frmAssetTypeEdit(AssetType assetType)
         {
             InitializeComponent();
             _assetType = assetType;
-            LoadWindow(true);
+            _editMode = true;
+            LoadWindow();
         }
 
         public bool Ok
@@ -29,11 +31,12 @@ namespace AssetControl.Forms
             get { return _ok; }
         }
 
-        private void LoadWindow(bool editMode)
+        private void LoadWindow()
         {
-            if (!editMode)
+            if (!_editMode)
             {
                 Text = "Crear nuevo Tipo de activo";
+                lblTitleAssetTypeEdit.Text = "Crear Tipo de Activo";
                 lblTitleAssetTypeEdit.Location = new Point(47, 15);
                 lblObservations.Visible = true;                
             }
@@ -45,7 +48,6 @@ namespace AssetControl.Forms
                 txtAssetTypeId.Text = _assetType.AssetTypeId.ToString();
                 txtAssetTypeDescription.Text = _assetType.TypeDescription.ToString();
             }
-            this._editMode = editMode;
             _ok = false;
         }
 

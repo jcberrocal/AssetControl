@@ -145,8 +145,14 @@
             this.Controls.Add(this.lblActualPasswordEdit);
             this.Controls.Add(this.txtActualPasswordEdit);
             this.Controls.Add(this.lblTitlePasswordEdit);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.KeyPreview = true;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmPasswordChange";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Cambiar contraseña";
             this.TopMost = true;

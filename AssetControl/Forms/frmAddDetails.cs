@@ -70,7 +70,7 @@ namespace AssetControl.Forms
                     cbOptions.SelectedIndex = -1;
                     break;
 
-                case "Estado":
+                case "Cambiar Estado":
                     lblComboTitle.Text = "Nuevo Estado";
                     List<AssetStatus> statuses = new List<AssetStatus>();
                     using (AssetService service = new AssetService())

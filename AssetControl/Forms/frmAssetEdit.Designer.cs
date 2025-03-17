@@ -73,7 +73,7 @@
             // 
             // txtAssetId
             // 
-            this.txtAssetId.BackColor = System.Drawing.SystemColors.Window;
+            this.txtAssetId.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.txtAssetId.Enabled = false;
             this.txtAssetId.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAssetId.Location = new System.Drawing.Point(123, 57);
@@ -92,6 +92,8 @@
             // 
             // cbAssetType
             // 
+            this.cbAssetType.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbAssetType.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbAssetType.BackColor = System.Drawing.Color.LightGoldenrodYellow;
             this.cbAssetType.DisplayMember = "TypeDescription";
             this.cbAssetType.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -101,9 +103,12 @@
             this.cbAssetType.Size = new System.Drawing.Size(179, 23);
             this.cbAssetType.TabIndex = 2;
             this.cbAssetType.ValueMember = "AssetTypeId";
+            this.cbAssetType.Enter += new System.EventHandler(this.cbAssetType_Enter);
             // 
             // cbAssetStatus
             // 
+            this.cbAssetStatus.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbAssetStatus.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbAssetStatus.DisplayMember = "StatusDescription";
             this.cbAssetStatus.Enabled = false;
             this.cbAssetStatus.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -113,9 +118,12 @@
             this.cbAssetStatus.Size = new System.Drawing.Size(179, 23);
             this.cbAssetStatus.TabIndex = 3;
             this.cbAssetStatus.ValueMember = "Status";
+            this.cbAssetStatus.Enter += new System.EventHandler(this.cbAssetStatus_Enter);
             // 
             // cbAssetLocation
             // 
+            this.cbAssetLocation.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbAssetLocation.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbAssetLocation.BackColor = System.Drawing.Color.LightGoldenrodYellow;
             this.cbAssetLocation.DisplayMember = "LocationDescription";
             this.cbAssetLocation.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -125,9 +133,12 @@
             this.cbAssetLocation.Size = new System.Drawing.Size(179, 23);
             this.cbAssetLocation.TabIndex = 4;
             this.cbAssetLocation.ValueMember = "AssetLocationId";
+            this.cbAssetLocation.Enter += new System.EventHandler(this.cbAssetLocation_Enter);
             // 
             // cbAssetBranch
             // 
+            this.cbAssetBranch.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbAssetBranch.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbAssetBranch.BackColor = System.Drawing.Color.LightGoldenrodYellow;
             this.cbAssetBranch.DisplayMember = "BranchDescription";
             this.cbAssetBranch.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -137,6 +148,7 @@
             this.cbAssetBranch.Size = new System.Drawing.Size(179, 23);
             this.cbAssetBranch.TabIndex = 5;
             this.cbAssetBranch.ValueMember = "BranchId";
+            this.cbAssetBranch.Enter += new System.EventHandler(this.cbAssetBranch_Enter);
             // 
             // txtAssetPrice
             // 
@@ -147,6 +159,8 @@
             this.txtAssetPrice.TabIndex = 6;
             this.txtAssetPrice.Text = "0";
             this.txtAssetPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtAssetPrice.Enter += new System.EventHandler(this.txtAssetPrice_Enter);
+            this.txtAssetPrice.Leave += new System.EventHandler(this.txtAssetPrice_Leave);
             // 
             // txtAssetObservations
             // 
@@ -196,6 +210,8 @@
             this.txtQuantity.TabIndex = 11;
             this.txtQuantity.Text = "1";
             this.txtQuantity.ValidatingType = typeof(int);
+            this.txtQuantity.Enter += new System.EventHandler(this.txtQuantity_Enter);
+            this.txtQuantity.Leave += new System.EventHandler(this.txtQuantity_Leave);
             // 
             // dtpAssetPurchaseDate
             // 
@@ -220,7 +236,6 @@
             // lblAssetId
             // 
             this.lblAssetId.AutoSize = true;
-            this.lblAssetId.Enabled = false;
             this.lblAssetId.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAssetId.Location = new System.Drawing.Point(12, 60);
             this.lblAssetId.Name = "lblAssetId";
@@ -545,6 +560,7 @@
             this.Controls.Add(this.txtAssetDescription);
             this.Controls.Add(this.txtAssetId);
             this.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.MaximizeBox = false;
@@ -552,6 +568,7 @@
             this.Name = "frmAssetEdit";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "frmAssetEdit";
             this.TopMost = true;

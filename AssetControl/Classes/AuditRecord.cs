@@ -2,7 +2,7 @@
 
 namespace AssetControl.Classes
 {
-    internal class AuditRecord
+    public class AuditRecord
     {
         public int LogId {  get; set; }
         public DateTime LogDate { get; set; }

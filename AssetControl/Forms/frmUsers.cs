@@ -143,8 +143,7 @@ namespace AssetControl.Forms
                 return;
             }
             DataGridViewRow selectedRow = dtgUsers.SelectedRows[0];
-            if (selectedRow.Cells["endDate"].Value != null ||
-                selectedRow.Cells["endDate"].Value != DBNull.Value)
+            if (selectedRow.Cells["endDate"].Value != null)
             {
                 MessageBox.Show("El usuario ya se encuentra finalizado",
                     "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -189,6 +188,64 @@ namespace AssetControl.Forms
             }
         }
 
+        private void ReactivateUser()
+        {
+            if(dtgUsers.Rows.Count == 0)
+            {
+                MessageBox.Show("No hay datos para editar", "Atención",
+                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+            if (dtgUsers.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Debe seleccionar una fila", "Atención",
+                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+            DataGridViewRow selectedRow = dtgUsers.SelectedRows[0];
+            if (selectedRow.Cells["endDate"].Value == null)
+            {
+                MessageBox.Show("El usuario ya se encuentra activo",
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+            bool ok;
+            string details;
+            using (frmAddDetails ofrm = new frmAddDetails("Reactivar Usuario"))
+            {
+                ofrm.ShowDialog();
+                ok = ofrm.Ok;
+                details = ofrm.Details;
+            }
+            if (ok)
+            {
+                User user = User.CreateNewUser();
+                user = (User)selectedRow.DataBoundItem;
+                string result = string.Empty;
+                using (UserService service = new UserService())
+                {
+                    result = service.SaveUser(user, EditType.Reactivate);
+                }
+                if (!string.IsNullOrEmpty(result))
+                {
+                    MessageBox.Show(result, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                AuditRecord audit = new AuditRecord
+                {
+                    LogDate = DateTime.Now,
+                    UserId = User.Instance.UserId,
+                    TableName = "users",
+                    Action = $"Reactivate User: {user.UserName}",
+                    RecordId = user.UserId,
+                    Details = details
+                };
+                Utilities.SaveAuditRecord(audit);
+                //refresh grid
+                btnSearchUser.PerformClick();
+            }
+        }
+
         private void frmUsers_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -201,9 +258,9 @@ namespace AssetControl.Forms
                 btnSearchUser.PerformClick();
                 e.SuppressKeyPress = true;
             }
-            if (e.KeyCode == Keys.F10)
+            if (e.KeyCode == Keys.F10 && User.Instance.Role == 1)
             {
-                //ReactivateUser();
+                ReactivateUser();
                 e.SuppressKeyPress = true;
             }
         }

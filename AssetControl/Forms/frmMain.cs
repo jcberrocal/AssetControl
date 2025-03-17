@@ -23,8 +23,8 @@ namespace AssetControl.Forms
 
         private void LoadForm()
         {
-            lblUserMain.Text += user.UserName;
-            lblRoleMain.Text += user.RoleDescription;
+            lblUserMain.Text = $"Usuario: {user.UserName}";
+            lblRoleMain.Text = $"Perfil: {user.RoleDescription}";
             if (user.Role == 1)
             {
                 tsButtonUsers.Visible = true;
@@ -143,7 +143,8 @@ namespace AssetControl.Forms
 
         private void tsButtonAbout_Click(object sender, EventArgs e)
         {
-
+            frmAbout frm = new frmAbout();
+            frm.ShowDialog();
         }
 
         private void tsButtonAssets_Click(object sender, EventArgs e)

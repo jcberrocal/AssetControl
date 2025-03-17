@@ -119,6 +119,12 @@
     <Compile Include="Classes\UserRole.cs" />
     <Compile Include="Data\DataBaseManager.cs" />
     <Compile Include="Exceptions\ValidationException.cs" />
+    <Compile Include="Forms\frmAbout.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmAbout.Designer.cs">
+      <DependentUpon>frmAbout.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\frmAddDetails.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -225,6 +231,9 @@
     <Compile Include="Logic\Encryptor.cs" />
     <Compile Include="Classes\OptionalAttribute.cs" />
     <Compile Include="Logic\Validator.cs" />
+    <EmbeddedResource Include="Forms\frmAbout.resx">
+      <DependentUpon>frmAbout.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmAddDetails.resx">
       <DependentUpon>frmAddDetails.cs</DependentUpon>
     </EmbeddedResource>
@@ -304,6 +313,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="asset-color.ico" />
+    <None Include="Images\About.gif" />
     <None Include="Images\move-32.png" />
     <None Include="Images\refresh-16.png" />
     <None Include="Images\arrows-32.png" />

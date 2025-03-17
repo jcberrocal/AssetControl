@@ -16,7 +16,7 @@ namespace AssetControl.Forms
     {
         private static frmAssets _instance;
         private bool _activeOnly;
-        private bool _genericAsset;
+        private bool _genericAsset = true;
         public frmAssets()
         {
             InitializeComponent();
@@ -39,10 +39,10 @@ namespace AssetControl.Forms
             {
                 Description = txtAssetDescription.Text,
                 AssetTag = txtAssetTag.Text,
-                AssetType = Convert.ToInt32(cbAssetType.SelectedItem),
-                Status = Convert.ToInt32(cbAssetStatus.SelectedItem),
-                Location = Convert.ToInt32(cbAssetLocation.SelectedItem),
-                Branch = Convert.ToInt32(cbAssetBranch.SelectedItem),
+                AssetType = Convert.ToInt32(cbAssetType.SelectedValue),
+                Status = Convert.ToInt32(cbAssetStatus.SelectedValue),
+                Location = Convert.ToInt32(cbAssetLocation.SelectedValue),
+                Branch = Convert.ToInt32(cbAssetBranch.SelectedValue),
                 ActiveOnly = _activeOnly,
                 GenericAsset = _genericAsset
             };
@@ -64,6 +64,7 @@ namespace AssetControl.Forms
             dtgAssets.DataSource = results.Data;
         }
 
+        //methods to fill comboboxes only when needed
         private void cbAssetType_DropDown(object sender, EventArgs e)
         {
             if(cbAssetType.DataSource == null)
@@ -131,7 +132,7 @@ namespace AssetControl.Forms
                 }
             }
         }
-
+        #region Button Events
         private void chkActiveOnly_CheckedChanged(object sender, EventArgs e)
         {
             _activeOnly = chkActiveOnly.Checked;
@@ -152,25 +153,6 @@ namespace AssetControl.Forms
             cbAssetBranch.SelectedIndex = -1;
             chkActiveOnly.Checked = true;
             chkGenericAsset.Checked = false;
-        }
-
-        private void frmAssets_KeyDown(object sender, KeyEventArgs e)
-        {
-            if(e.KeyCode == Keys.Enter)
-            {
-                SendKeys.Send("{Tab}");
-                e.SuppressKeyPress = true;
-            }
-            if (e.KeyCode == Keys.F3)
-            {
-                btnSearchAssets.PerformClick();
-                e.SuppressKeyPress = true;
-            }
-            if(e.KeyCode == Keys.F5)
-            {
-                btnClearAssets.PerformClick();
-                e.SuppressKeyPress = true;
-            }
         }
 
         private void tsButtonNewAsset_Click(object sender, EventArgs e)
@@ -399,6 +381,45 @@ namespace AssetControl.Forms
                 //Refresh grid
                 btnSearchAssets.PerformClick();
             }
+        }
+#endregion region
+        private void frmAssets_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                SendKeys.Send("{Tab}");
+                e.SuppressKeyPress = true;
+            }
+            if (e.KeyCode == Keys.F3)
+            {
+                btnSearchAssets.PerformClick();
+                e.SuppressKeyPress = true;
+            }
+            if (e.KeyCode == Keys.F5)
+            {
+                btnClearAssets.PerformClick();
+                e.SuppressKeyPress = true;
+            }
+        }
+
+        private void cbAssetType_Enter(object sender, EventArgs e)
+        {
+            cbAssetType.DroppedDown = true;
+        }
+
+        private void cbAssetStatus_Enter(object sender, EventArgs e)
+        {
+            cbAssetStatus.DroppedDown = true;
+        }
+
+        private void cbAssetLocation_Enter(object sender, EventArgs e)
+        {
+            cbAssetLocation.DroppedDown = true;
+        }
+
+        private void cbAssetBranch_Enter(object sender, EventArgs e)
+        {
+            cbAssetBranch.DroppedDown = true;
         }
     }
 }
