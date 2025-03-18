@@ -42,10 +42,10 @@
             this.tsButtonBranchEndate = new System.Windows.Forms.ToolStripButton();
             this.tsBranchSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.dtgBranches = new System.Windows.Forms.DataGridView();
-            this.branchIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.branchDescriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.endDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.branchBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.branchId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.branchDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.endDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnlFilterSection.SuspendLayout();
             this.pnlDataSection.SuspendLayout();
             this.tsBranches.SuspendLayout();
@@ -198,9 +198,9 @@
             this.dtgBranches.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.dtgBranches.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgBranches.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.branchIdDataGridViewTextBoxColumn,
-            this.branchDescriptionDataGridViewTextBoxColumn,
-            this.endDateDataGridViewTextBoxColumn});
+            this.branchId,
+            this.branchDescription,
+            this.endDate});
             this.dtgBranches.DataSource = this.branchBindingSource;
             this.dtgBranches.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dtgBranches.Location = new System.Drawing.Point(0, 0);
@@ -216,39 +216,39 @@
             this.dtgBranches.Size = new System.Drawing.Size(1052, 357);
             this.dtgBranches.TabIndex = 1;
             // 
-            // branchIdDataGridViewTextBoxColumn
-            // 
-            this.branchIdDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.branchIdDataGridViewTextBoxColumn.DataPropertyName = "BranchId";
-            this.branchIdDataGridViewTextBoxColumn.DividerWidth = 1;
-            this.branchIdDataGridViewTextBoxColumn.HeaderText = "ID";
-            this.branchIdDataGridViewTextBoxColumn.Name = "branchIdDataGridViewTextBoxColumn";
-            this.branchIdDataGridViewTextBoxColumn.ReadOnly = true;
-            this.branchIdDataGridViewTextBoxColumn.Width = 50;
-            // 
-            // branchDescriptionDataGridViewTextBoxColumn
-            // 
-            this.branchDescriptionDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.branchDescriptionDataGridViewTextBoxColumn.DataPropertyName = "BranchDescription";
-            this.branchDescriptionDataGridViewTextBoxColumn.DividerWidth = 1;
-            this.branchDescriptionDataGridViewTextBoxColumn.HeaderText = "Descripción";
-            this.branchDescriptionDataGridViewTextBoxColumn.Name = "branchDescriptionDataGridViewTextBoxColumn";
-            this.branchDescriptionDataGridViewTextBoxColumn.ReadOnly = true;
-            this.branchDescriptionDataGridViewTextBoxColumn.Width = 350;
-            // 
-            // endDateDataGridViewTextBoxColumn
-            // 
-            this.endDateDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.endDateDataGridViewTextBoxColumn.DataPropertyName = "EndDate";
-            this.endDateDataGridViewTextBoxColumn.DividerWidth = 1;
-            this.endDateDataGridViewTextBoxColumn.HeaderText = "Fecha Fin";
-            this.endDateDataGridViewTextBoxColumn.Name = "endDateDataGridViewTextBoxColumn";
-            this.endDateDataGridViewTextBoxColumn.ReadOnly = true;
-            this.endDateDataGridViewTextBoxColumn.Width = 150;
-            // 
             // branchBindingSource
             // 
             this.branchBindingSource.DataSource = typeof(AssetControl.Classes.Branch);
+            // 
+            // branchId
+            // 
+            this.branchId.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.branchId.DataPropertyName = "BranchId";
+            this.branchId.DividerWidth = 1;
+            this.branchId.HeaderText = "ID";
+            this.branchId.Name = "branchId";
+            this.branchId.ReadOnly = true;
+            this.branchId.Width = 50;
+            // 
+            // branchDescription
+            // 
+            this.branchDescription.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.branchDescription.DataPropertyName = "BranchDescription";
+            this.branchDescription.DividerWidth = 1;
+            this.branchDescription.HeaderText = "Descripción";
+            this.branchDescription.Name = "branchDescription";
+            this.branchDescription.ReadOnly = true;
+            this.branchDescription.Width = 350;
+            // 
+            // endDate
+            // 
+            this.endDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.endDate.DataPropertyName = "EndDate";
+            this.endDate.DividerWidth = 1;
+            this.endDate.HeaderText = "Fecha Fin";
+            this.endDate.Name = "endDate";
+            this.endDate.ReadOnly = true;
+            this.endDate.Width = 150;
             // 
             // frmBranches
             // 
@@ -286,8 +286,8 @@
         private System.Windows.Forms.ToolStripSeparator tsBranchSeparator3;
         private System.Windows.Forms.DataGridView dtgBranches;
         private System.Windows.Forms.BindingSource branchBindingSource;
-        private System.Windows.Forms.DataGridViewTextBoxColumn branchIdDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn branchDescriptionDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn endDateDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn branchId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn branchDescription;
+        private System.Windows.Forms.DataGridViewTextBoxColumn endDate;
     }
 }

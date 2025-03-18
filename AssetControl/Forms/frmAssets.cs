@@ -220,6 +220,7 @@ namespace AssetControl.Forms
 
             bool ok;
             string details;
+            int oldStatus = asset.Status;
             int selectedId;
             using (frmAddDetails ofrm = new frmAddDetails("Cambiar Estado", true))
             {
@@ -228,9 +229,15 @@ namespace AssetControl.Forms
                 details = ofrm.Details;
                 selectedId = ofrm.SelectedId;
             }
+            if (oldStatus == selectedId)
+            {
+                MessageBox.Show("El estado seleccionado es el mismo que el actual.\nNo se guardarán los cambios",
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             if (ok)
             {
-                int oldStatus = asset.Status;
                 asset.Status = selectedId;
                 string result = string.Empty;
                 using (AssetService service = new AssetService())
@@ -254,8 +261,10 @@ namespace AssetControl.Forms
                     NewValue = selectedId.ToString()
                 };
                 Utilities.SaveAuditRecord(auditRecord);
-                btnSearchAssets.PerformClick();
+                //Refresh grid
+                btnSearchAssets.PerformClick(); 
             }
+            
         }
 
         private void tsButtonEndate_Click(object sender, EventArgs e)
@@ -335,12 +344,14 @@ namespace AssetControl.Forms
                 return;
             }
             DataGridViewRow selectedRow = dtgAssets.SelectedRows[0];
-            if (selectedRow.Cells["endDate"].Value != null)
+            Asset asset = (Asset)selectedRow.DataBoundItem;
+            if (asset.EndDate != null)
             {
                 MessageBox.Show("El activo seleccionado ya fue retirado.\nNo se puede editar",
                     "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            int oldBranch = asset.Branch;
             bool ok;
             string details;
             int selectedId;
@@ -351,10 +362,15 @@ namespace AssetControl.Forms
                 details = ofrm.Details;
                 selectedId = ofrm.SelectedId;
             }
+            if (oldBranch == selectedId)
+            {
+                MessageBox.Show("La filial seleccionada es la misma que la actual.\nNo se guardarán los cambios",
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             if (ok)
             {
-                Asset asset = (Asset)selectedRow.DataBoundItem;
-                int oldBranch = asset.Branch;
                 asset.Branch = selectedId;
                 string result = string.Empty;
                 using (AssetService service = new AssetService())
@@ -379,8 +395,9 @@ namespace AssetControl.Forms
                 };
                 Utilities.SaveAuditRecord(auditRecord);
                 //Refresh grid
-                btnSearchAssets.PerformClick();
+                btnSearchAssets.PerformClick(); 
             }
+            
         }
 #endregion region
         private void frmAssets_KeyDown(object sender, KeyEventArgs e)

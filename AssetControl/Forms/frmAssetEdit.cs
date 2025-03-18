@@ -286,7 +286,8 @@ namespace AssetControl.Forms
             if (!SaveAsset())
                 return;
             _ok = true;
-            MessageBox.Show("Activo creado correctamente", "Guardar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            string message = _editMode ? "actualizado" : "creado";
+            MessageBox.Show($"Activo {message} correctamente", "Guardar", MessageBoxButtons.OK, MessageBoxIcon.Information);
             Close();
         }
 
